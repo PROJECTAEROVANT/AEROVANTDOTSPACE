@@ -1,0 +1,299 @@
+@font-face {
+  font-family: "Anybody";
+  src: url("anybody.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 50% 150%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("instrument-sans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --void: #000;
+  --chrome: #e7e0e2;
+  --chrome-dim: #9a9296;
+  --brass: #c9a455;
+  --gutter: clamp(20px, 5vw, 56px);
+  --measure: 1120px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--void);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow-x: clip;
+  background: var(--void);
+  color: var(--chrome);
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Masthead */
+
+.mast {
+  padding: clamp(24px, 4.5vw, 52px) var(--gutter) 0;
+}
+
+.wordmark {
+  width: min(100%, 760px);
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Stage: satellite and orbits. Full width; the drawing is allowed to bleed off narrow screens. */
+
+.stage {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(0px, 1vw, 12px);
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 34% 52% at 50% 50%, rgba(46, 43, 110, 0.55), transparent 72%);
+  pointer-events: none;
+}
+
+.stage-inner {
+  position: relative;
+  width: min(max(100vw, 720px), 1000px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.orbits {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.orbit {
+  fill: none;
+  stroke: var(--chrome);
+  stroke-width: 1.4;
+  stroke-opacity: 0.3;
+}
+
+.orbit.near {
+  stroke-opacity: 0.7;
+}
+
+.orbit.thin {
+  stroke-width: 1;
+  stroke-opacity: 0.22;
+}
+
+.orbit.thin.near {
+  stroke-opacity: 0.5;
+}
+
+.bead .halo {
+  fill: var(--brass);
+  fill-opacity: 0.22;
+}
+
+.bead .core {
+  fill: #f6e2b0;
+}
+
+.bead.alt .halo {
+  fill: var(--chrome);
+  fill-opacity: 0.18;
+}
+
+.bead.alt .core {
+  fill: #fff;
+}
+
+/* One entrance: the orbits draw themselves, the satellite arrives, the lights switch on. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .orbit {
+    stroke-dasharray: 1;
+    animation: draw 2.2s cubic-bezier(0.45, 0, 0.15, 1) 0.25s both;
+  }
+
+  .orbit.thin {
+    animation-delay: 0.5s;
+  }
+
+  .craft {
+    animation: arrive 1.4s ease-out 0.1s both;
+  }
+
+  .bead {
+    animation: arrive 0.9s ease-out 2s both;
+  }
+}
+
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes arrive {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Pitch */
+
+.pitch {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 40px);
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(28px, 5vw, 56px) var(--gutter) 0;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Anybody", "Arial Black", system-ui, sans-serif;
+  font-size: clamp(2.25rem, 10.5vw, 5.25rem);
+  font-weight: 800;
+  font-stretch: 118%;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.pitch-body {
+  max-width: 34rem;
+}
+
+.pitch-body p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.nb {
+  white-space: nowrap;
+}
+
+.pitch-body .lead {
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-size: clamp(1.35rem, 3.4vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3.25rem;
+  margin-top: 1.75rem;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  background: var(--chrome);
+  color: #000;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background: var(--brass);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:focus-visible,
+.contact a:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+/* Contact */
+
+.contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(56px, 10vw, 112px) var(--gutter) max(40px, env(safe-area-inset-bottom));
+}
+
+.contact p {
+  margin: 0 0 0.15rem;
+  color: var(--chrome-dim);
+  font-size: 0.9375rem;
+}
+
+.contact a {
+  color: var(--chrome);
+  text-decoration: underline;
+  text-decoration-color: rgba(231, 224, 226, 0.35);
+  text-underline-offset: 0.25em;
+}
+
+.contact a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Larger screens: headline left, pitch right */
+
+@media (min-width: 640px) {
+  .button {
+    display: inline-flex;
+    width: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+  .pitch,
+  .contact {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    column-gap: clamp(48px, 6vw, 80px);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 5.2vw, 4rem);
+  }
+
+  .pitch-body {
+    padding-top: 0.35rem;
+  }
+
+  .contact > div {
+    grid-column: 2;
+  }
+}
