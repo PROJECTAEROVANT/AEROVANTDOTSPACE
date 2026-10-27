@@ -39,49 +39,34 @@
 
           <radialGradient id="glowBrass"><stop offset="0" stop-color="#c9a455" stop-opacity="0.34"/><stop offset="1" stop-color="#c9a455" stop-opacity="0"/></radialGradient>
           <radialGradient id="glowChrome"><stop offset="0" stop-color="#e7e0e2" stop-opacity="0.26"/><stop offset="1" stop-color="#e7e0e2" stop-opacity="0"/></radialGradient>
+          <mask id="behindEarth" maskUnits="userSpaceOnUse" x="-800" y="-500" width="1600" height="1000">
+            <rect x="-800" y="-500" width="1600" height="1000" fill="#fff"/>
+            <circle r="137" fill="#000"/>
+          </mask>
         </defs>
 
-        <!-- far side of each orbit, behind Earth -->
-        <g transform="rotate(-9)">
-          <g clip-path="url(#far)">
-            <path class="orbit" pathLength="1" d="M-440 0A440 96 0 0 1 440 0"/>
-            <g class="bead chrome">
-              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(9)"/>
-              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion>
-            </g>
-          </g>
-        </g>
-        <g transform="rotate(13)">
-          <g clip-path="url(#far)">
-            <path class="orbit thin" pathLength="1" d="M-350 0A350 58 0 0 1 350 0"/>
-            <g class="bead chrome">
-              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/>
-              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion>
-            </g>
-          </g>
-        </g>
+        <!-- Layers, back to front: far orbit lines, Earth, near orbit lines, then the satellites.
+             Satellites sit above every line. Far-side ones are hidden only where Earth's disc covers them,
+             so a satellite behind the planet still disappears, but no line ever paints over a satellite. -->
+        <g transform="rotate(-9)"><g clip-path="url(#far)"><path class="orbit" pathLength="1" d="M-440 0A440 96 0 0 1 440 0"/></g></g>
+        <g transform="rotate(13)"><g clip-path="url(#far)"><path class="orbit thin" pathLength="1" d="M-350 0A350 58 0 0 1 350 0"/></g></g>
 
         <image class="earth" href="earth.webp" x="-165" y="-165" width="330" height="330"/>
 
-        <!-- near side of each orbit, in front of Earth -->
-        <g transform="rotate(-9)">
-          <g clip-path="url(#near)">
-            <path class="orbit near" pathLength="1" d="M-440 0A440 96 0 0 0 440 0"/>
-            <g class="bead chrome">
-              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(9)"/>
-              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion>
-            </g>
-          </g>
+        <g transform="rotate(-9)"><g clip-path="url(#near)"><path class="orbit near" pathLength="1" d="M-440 0A440 96 0 0 0 440 0"/></g></g>
+        <g transform="rotate(13)"><g clip-path="url(#near)"><path class="orbit thin near" pathLength="1" d="M-350 0A350 58 0 0 0 350 0"/></g></g>
+
+        <g mask="url(#behindEarth)">
+          <g transform="rotate(-9)"><g clip-path="url(#far)"><g class="bead chrome"><circle class="sat-glow" r="36"/><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g></g></g>
+          <g transform="rotate(13)"><g clip-path="url(#far)"><g class="bead chrome"><circle class="sat-glow" r="36"/><animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g></g></g>
+          <g transform="rotate(-9)"><g clip-path="url(#far)"><g class="bead"><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(9)"/><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g></g></g>
+          <g transform="rotate(13)"><g clip-path="url(#far)"><g class="bead"><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/><animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g></g></g>
         </g>
-        <g transform="rotate(13)">
-          <g clip-path="url(#near)">
-            <path class="orbit thin near" pathLength="1" d="M-350 0A350 58 0 0 0 350 0"/>
-            <g class="bead chrome">
-              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/>
-              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion>
-            </g>
-          </g>
-        </g>
+
+        <g transform="rotate(-9)"><g clip-path="url(#near)"><g class="bead chrome"><circle class="sat-glow" r="36"/><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g></g></g>
+        <g transform="rotate(13)"><g clip-path="url(#near)"><g class="bead chrome"><circle class="sat-glow" r="36"/><animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g></g></g>
+        <g transform="rotate(-9)"><g clip-path="url(#near)"><g class="bead"><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(9)"/><animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g></g></g>
+        <g transform="rotate(13)"><g clip-path="url(#near)"><g class="bead"><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/><animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g></g></g>
       </svg>
     </div>
   </section>
