@@ -66,7 +66,7 @@ svg {
   margin-inline: auto;
 }
 
-/* Stage: satellite and orbits. Full width; the drawing is allowed to bleed off narrow screens. */
+/* Stage: Earth and orbits. Full width; the drawing is allowed to bleed off narrow screens. */
 
 .stage {
   position: relative;
@@ -78,7 +78,7 @@ svg {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 34% 52% at 50% 50%, rgba(46, 43, 110, 0.55), transparent 72%);
+  background: radial-gradient(ellipse 34% 52% at 50% 50%, rgba(28, 58, 140, 0.4), transparent 72%);
   pointer-events: none;
 }
 
@@ -115,25 +115,17 @@ svg {
   stroke-opacity: 0.5;
 }
 
-.bead .halo {
-  fill: var(--brass);
-  fill-opacity: 0.22;
+/* Satellites */
+
+.sat-glow {
+  fill: url(#glowBrass);
 }
 
-.bead .core {
-  fill: #f6e2b0;
+.bead.chrome .sat-glow {
+  fill: url(#glowChrome);
 }
 
-.bead.alt .halo {
-  fill: var(--chrome);
-  fill-opacity: 0.18;
-}
-
-.bead.alt .core {
-  fill: #fff;
-}
-
-/* One entrance: the orbits draw themselves, the satellite arrives, the lights switch on. */
+/* One entrance: the orbits draw themselves, Earth fades in, the satellites appear. */
 
 @media (prefers-reduced-motion: no-preference) {
   .orbit {
@@ -145,7 +137,7 @@ svg {
     animation-delay: 0.5s;
   }
 
-  .craft {
+  .earth {
     animation: arrive 1.4s ease-out 0.1s both;
   }
 

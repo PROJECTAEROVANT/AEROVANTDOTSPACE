@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Aerovant | AV-1 Founders' Flight</title>
-  <meta name="description" content="Donate to AV-1's development and have your name sent into orbit around our planet.">
+  <meta name="description" content="Donate to support AV-1's development and have your name sent into orbit around our planet.">
   <meta name="theme-color" content="#000000">
   <meta name="color-scheme" content="dark">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="AV-1 Founders' Flight | Aerovant">
-  <meta property="og:description" content="Donate to AV-1's development and have your name sent into orbit around our planet.">
-  <meta property="og:url" content="https://projectaerovant.github.io/AEROVANTDOTSPACE/">
-  <meta property="og:image" content="https://projectaerovant.github.io/AEROVANTDOTSPACE/og.png">
+  <meta property="og:description" content="Donate to support AV-1's development and have your name sent into orbit around our planet.">
+  <meta property="og:url" content="https://aerovant.space/">
+  <meta property="og:image" content="https://aerovant.space/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
@@ -30,45 +30,56 @@
 
   <section class="stage">
     <div class="stage-inner">
-      <svg class="orbits" viewBox="-470 -150 940 300" role="img" aria-label="The AV-1 satellite with two orbits around it">
+      <svg class="orbits" viewBox="-470 -170 940 340" role="img" aria-label="Two AV-1 satellites orbiting Earth">
         <defs>
-          <clipPath id="far"><rect x="-600" y="-400" width="1200" height="400"/></clipPath>
-          <clipPath id="near"><rect x="-600" y="0" width="1200" height="400"/></clipPath>
+          <clipPath id="far"><rect x="-600" y="-400" width="1200" height="400.4"/></clipPath>
+          <clipPath id="near"><rect x="-600" y="-0.4" width="1200" height="400.4"/></clipPath>
           <path id="loopA" d="M-440 0A440 96 0 0 1 440 0A440 96 0 0 1 -440 0"/>
           <path id="loopB" d="M-350 0A350 58 0 0 0 350 0A350 58 0 0 0 -350 0"/>
+
+          <radialGradient id="glowBrass"><stop offset="0" stop-color="#c9a455" stop-opacity="0.34"/><stop offset="1" stop-color="#c9a455" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glowChrome"><stop offset="0" stop-color="#e7e0e2" stop-opacity="0.26"/><stop offset="1" stop-color="#e7e0e2" stop-opacity="0"/></radialGradient>
         </defs>
 
-        <!-- far side of each orbit, behind the satellite -->
+        <!-- far side of each orbit, behind Earth -->
         <g transform="rotate(-9)">
           <g clip-path="url(#far)">
             <path class="orbit" pathLength="1" d="M-440 0A440 96 0 0 1 440 0"/>
-            <g class="bead"><circle class="halo" r="11"/><circle class="core" r="3"/>
-              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g>
+            <g class="bead brass">
+              <circle class="sat-glow" r="46"/><image href="satellite.png" x="-34" y="-26.4" width="68" height="52.8" transform="rotate(9)"/>
+              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion>
+            </g>
           </g>
         </g>
         <g transform="rotate(13)">
           <g clip-path="url(#far)">
             <path class="orbit thin" pathLength="1" d="M-350 0A350 58 0 0 1 350 0"/>
-            <g class="bead alt"><circle class="halo" r="8"/><circle class="core" r="2.2"/>
-              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g>
+            <g class="bead chrome">
+              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/>
+              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion>
+            </g>
           </g>
         </g>
 
-        <image class="craft" href="satellite.png" x="-170" y="-132" width="340" height="264"/>
+        <image class="earth" href="earth.webp" x="-165" y="-165" width="330" height="330"/>
 
-        <!-- near side of each orbit, in front of the satellite -->
+        <!-- near side of each orbit, in front of Earth -->
         <g transform="rotate(-9)">
           <g clip-path="url(#near)">
             <path class="orbit near" pathLength="1" d="M-440 0A440 96 0 0 0 440 0"/>
-            <g class="bead"><circle class="halo" r="11"/><circle class="core" r="3"/>
-              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion></g>
+            <g class="bead brass">
+              <circle class="sat-glow" r="46"/><image href="satellite.png" x="-34" y="-26.4" width="68" height="52.8" transform="rotate(9)"/>
+              <animateMotion dur="26s" repeatCount="indefinite"><mpath href="#loopA"/></animateMotion>
+            </g>
           </g>
         </g>
         <g transform="rotate(13)">
           <g clip-path="url(#near)">
             <path class="orbit thin near" pathLength="1" d="M-350 0A350 58 0 0 0 350 0"/>
-            <g class="bead alt"><circle class="halo" r="8"/><circle class="core" r="2.2"/>
-              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion></g>
+            <g class="bead chrome">
+              <circle class="sat-glow" r="36"/><image href="satellite.png" x="-26" y="-20.2" width="52" height="40.4" transform="rotate(-13)"/>
+              <animateMotion dur="39s" repeatCount="indefinite"><mpath href="#loopB"/></animateMotion>
+            </g>
           </g>
         </g>
       </svg>
@@ -92,7 +103,7 @@
   </footer>
 
   <script>
-    // Respect reduced-motion: freeze the orbiting lights partway round instead of animating them.
+    // Respect reduced-motion: freeze the satellites partway round instead of animating them.
     (function () {
       var svg = document.querySelector('.orbits');
       if (svg && svg.pauseAnimations && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
